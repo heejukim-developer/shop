@@ -1,25 +1,88 @@
 import logo from './logo.svg';
 import './App.css';
+import {Navbar, Container,Nav,NavDropdown,Button } from 'react-bootstrap';
+import Shop1 from './robot.jpg';
+import Shop2 from './harnes.jpg';
+import Shop3 from './brush.jpg';
+import { useState } from 'react';
+import Data from './data';
+
+
 
 function App() {
+
+let [데이터,데이터변경]= useState(Data)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+<Navbar bg="light" expand="lg">
+  <Container>
+    <Navbar.Brand href="#home">PET-SHOP</Navbar.Brand>
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="me-auto">
+        <Nav.Link href="#home">Home</Nav.Link>
+        <NavDropdown title="Shopping" id="basic-nav-dropdown">
+          <NavDropdown.Item href="#action/3.1">Best</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">옷</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">용품</NavDropdown.Item>
+          {/* <NavDropdown.Divider />
+          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
+        </NavDropdown>
+        <Nav.Link href="#link">Customer</Nav.Link>
+      </Nav>
+    </Navbar.Collapse>
+  </Container>
+</Navbar>
+
+<div class ="welcome">
+ 
+  <h2> 20% sale off </h2>
+   <p>어서오세요 애완용품 판매 홈페이지 입니다 </p>
+   <Button variant="outline-secondary">Learn more</Button>{' '}
+</div>
+
+best
+<Card shoes = {데이터[0]}/>
+<Card shoes = {데이터[1]}/>
+<Card shoes = {데이터[2]}/>
+
+
+
+{/* <div className="container">
+  <div className="row">
+    <div className="col-md-4">
+      <img src= {Shop1} alt ="로봇" width="100%" />
+      <h5> <a href ="https://www.varram.co.kr/35/?idx=1&gclid=EAIaIQobChMI7IeJ-YmF8QIVBlRgCh1mjgSvEAQYASABEgJtefD_BwE"> {데이터[0].title} </a> </h5>
+      <h6> 9900원 </h6>
+      </div> */}
+
+    {/* <div className="col-md-4">
+    <img src= {Shop2} alt ="하네스" width="100%" />
+      <h5> <a href="http://emart.ssg.com/item/itemView.ssg?itemId=1000031094380&siteNo=6001&salestrNo=6005" >강아지 목줄 패딩 하네스</a></h5>
+      <h6> 9900원</h6>
     </div>
+
+    <div className="col-md-4">
+    <img src= {Shop3} alt ="브러시" width="100%" />
+      <h5> <a href="http://www.1300k.com/shop/goodsDetail.html?f_goodsno=215025225220">펫모이스 실리콘 브러쉬</a></h5>
+      <h6> 18900원</h6>
+    </div> */}
+    
+  </div>
+
+
   );
 }
-
+function Card(props) {
+  return(
+   <div className= "col-md-4">
+   <img src= {Shop1} alt ="로봇" width="100%" />
+    <h5> {props.shoes.title} </h5>
+    <p> {props.shoes.price} {props.shoes.content}</p>
+    </div>
+  
+   )
+  }
+ 
 export default App;

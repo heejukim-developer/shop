@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.welcome{
+  background-image: url(/src/dog.jpg);
+  background-position:center;
+  background-size: 100%;
+  padding-top: 10px;
+  height: 200px;
+  width: auto;
+  text-align: center;
+}
+.welcome h2{
+  padding-top: 30px;
+}
+
+.col-md-4{
+  margin-top: 50px;
+}
