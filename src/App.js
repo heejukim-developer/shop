@@ -1,11 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import {Navbar, Container,Nav,NavDropdown,Button } from 'react-bootstrap';
-import Shop1 from './robot.jpg';
-import Shop2 from './harnes.jpg';
-import Shop3 from './brush.jpg';
+// import Shop1 from './robot.jpg';
+// import Shop2 from './harnes.jpg';
+// import Shop3 from './brush.jpg';
 import { useState } from 'react';
 import Data from './data';
+// import photo1 from './1.jpg';
+// import photo2 from './2.jpg';
+// import photo3 from './3.jpg';
 
 
 
@@ -42,20 +45,21 @@ let [데이터,데이터변경]= useState(Data)
    <Button variant="outline-secondary">Learn more</Button>{' '}
 </div>
 
-best
-<Card shoes = {데이터[0]}/>
-<Card shoes = {데이터[1]}/>
-<Card shoes = {데이터[2]}/>
 
-
-
-{/* <div className="container">
+<div className="container">
   <div className="row">
-    <div className="col-md-4">
+  {
+    데이터.map((a,i)=>{
+      return (<Card shoes = {데이터[i]} i={i}/>)
+    })
+    }
+
+
+    {/* <div className="col-md-4">
       <img src= {Shop1} alt ="로봇" width="100%" />
       <h5> <a href ="https://www.varram.co.kr/35/?idx=1&gclid=EAIaIQobChMI7IeJ-YmF8QIVBlRgCh1mjgSvEAQYASABEgJtefD_BwE"> {데이터[0].title} </a> </h5>
       <h6> 9900원 </h6>
-      </div> */}
+      </div> */} 
 
     {/* <div className="col-md-4">
     <img src= {Shop2} alt ="하네스" width="100%" />
@@ -70,6 +74,8 @@ best
     </div> */}
     
   </div>
+  </div>
+  </div>
 
 
   );
@@ -77,7 +83,7 @@ best
 function Card(props) {
   return(
    <div className= "col-md-4">
-   <img src= {Shop1} alt ="로봇" width="100%" />
+   <img src= {'../'+(props.i+1) +'.jpg'} width="100%" />
     <h5> {props.shoes.title} </h5>
     <p> {props.shoes.price} {props.shoes.content}</p>
     </div>
