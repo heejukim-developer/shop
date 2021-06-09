@@ -8,14 +8,14 @@ export default [
 
 {
     id:1,
-    title:"강아지 목줄 패딩 하네스",
+    title:"펫모이스 실리콘 브러쉬",
     content : "용품",
     price: 9900
 },
 
 {
     id:2,
-    title:"펫모이스 실리콘 브러쉬",
+    title:"귀염뽀짝 패딩 하네스",
     content : "용품",
     price: 18900
 }

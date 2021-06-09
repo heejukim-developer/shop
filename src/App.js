@@ -1,16 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import {Navbar, Container,Nav,NavDropdown,Button } from 'react-bootstrap';
-// import Shop1 from './robot.jpg';
-// import Shop2 from './harnes.jpg';
-// import Shop3 from './brush.jpg';
 import { useState } from 'react';
 import Data from './data';
-// import photo1 from './1.jpg';
-// import photo2 from './2.jpg';
-// import photo3 from './3.jpg';
+import Detail from './Detail.js';
 
-
+import {Link, Route, Switch} from 'react-router-dom';
 
 function App() {
 
@@ -24,7 +19,8 @@ let [데이터,데이터변경]= useState(Data)
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
+        <Nav.Link ><Link to ="/">Home</Link></Nav.Link>
+        <Nav.Link ><Link to ="/detail">Detail</Link></Nav.Link>
         <NavDropdown title="Shopping" id="basic-nav-dropdown">
           <NavDropdown.Item href="#action/3.1">Best</NavDropdown.Item>
           <NavDropdown.Item href="#action/3.2">옷</NavDropdown.Item>
@@ -38,22 +34,37 @@ let [데이터,데이터변경]= useState(Data)
   </Container>
 </Navbar>
 
-<div class ="welcome">
- 
-  <h2> 20% sale off </h2>
-   <p>어서오세요 애완용품 판매 홈페이지 입니다 </p>
-   <Button variant="outline-secondary">Learn more</Button>{' '}
-</div>
 
+<Route exact path ="/">
 
-<div className="container">
+ <div class ="welcome">
+ <h2> 20% sale off </h2>
+  <p>어서오세요 애완용품 판매 홈페이지 입니다 </p>
+  <Button variant="outline-secondary">Learn more</Button>{' '}
+  </div>
+
+  <div className="container">
   <div className="row">
   {
     데이터.map((a,i)=>{
       return (<Card shoes = {데이터[i]} i={i}/>)
     })
     }
+  </div>
+  </div>
 
+</Route>
+
+<Switch>
+<Route path ="/detail/:id">
+  <Detail shoes작명 ={데이터}/>
+</Route>
+
+<Route path ="/:id">
+  <div> 안녕하슈 </div>
+</Route>
+
+</Switch>
 
     {/* <div className="col-md-4">
       <img src= {Shop1} alt ="로봇" width="100%" />
@@ -72,23 +83,24 @@ let [데이터,데이터변경]= useState(Data)
       <h5> <a href="http://www.1300k.com/shop/goodsDetail.html?f_goodsno=215025225220">펫모이스 실리콘 브러쉬</a></h5>
       <h6> 18900원</h6>
     </div> */}
-    
-  </div>
-  </div>
   </div>
 
 
   );
 }
+
+
+
+
 function Card(props) {
   return(
    <div className= "col-md-4">
-   <img src= {'../'+(props.i+1) +'.jpg'} width="100%" />
+   <img src= {'https://github.com/heejukim-developer/shop/blob/master/src/'+ (props.i +1) + '.jpg?raw=true'} width="100%" />
     <h5> {props.shoes.title} </h5>
     <p> {props.shoes.price} {props.shoes.content}</p>
     </div>
   
    )
   }
- 
-export default App;
+  
+  export default App;
