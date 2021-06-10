@@ -14,7 +14,9 @@ let 제목 = styled.h4`
 function Detail(props){
 
 useEffect(()=>{
-    console.log(1)
+//    let 타이머 = setTimeout(() => { }, 2000);
+
+
 });
 
 let { id } = useParams();
