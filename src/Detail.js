@@ -14,11 +14,12 @@ let 제목 = styled.h4`
 function Detail(props){
 
 useEffect(()=>{
-//    let 타이머 = setTimeout(() => { }, 2000);
+   let 타이머 = setTimeout(() => {alert변경(false) }, 2000);
 
 
 });
-
+let [alert, alert변경]= useState(true);
+let [inputData , inputData변경] = useState('');
 let { id } = useParams();
 let history = useHistory();
 
@@ -27,9 +28,16 @@ let history = useHistory();
         <박스>
            <제목 className='red'>상세페이지</제목>
         </박스>
-        <div className="my-alert2">
+    <input onChange= {()=>{inputData변경(e.target.value)}}>
+    </input>
+        {
+            alert === true
+            ?(<div className="my-alert2">
             <p>재고가 얼마 남지 않았습니다 </p>
-        </div>
+            </div>
+        )
+        : null
+        }
         
 
         <div className="row">
