@@ -15,9 +15,10 @@ function Detail(props){
 
 useEffect(()=>{
    let 타이머 = setTimeout(() => {alert변경(false) }, 2000);
+   console.log('안녕');
+   return ()=>{clearTimeout(타이머)}
+},[]);
 
-
-});
 let [alert, alert변경]= useState(true);
 let [inputData , inputData변경] = useState('');
 let { id } = useParams();
@@ -28,7 +29,8 @@ let history = useHistory();
         <박스>
            <제목 className='red'>상세페이지</제목>
         </박스>
-    <input onChange= {()=>{inputData변경(e.target.value)}}>
+        
+    <input onChange= {(e)=>{inputData변경(e.target.value)}}>
     </input>
         {
             alert === true
