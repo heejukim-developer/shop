@@ -53,3 +53,8 @@
 .col-md-4{
   margin-top: 50px;
 }
+.btn-primary{
+  background: #61dafb;
+  border-radius: 5px;
+  border-color: #eeeeee;
+}

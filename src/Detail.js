@@ -1,3 +1,4 @@
+// import { info } from 'console';
 import React,{ useEffect, useState } from 'react';
 import { useHistory , useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -29,7 +30,7 @@ let history = useHistory();
         <박스>
            <제목 className='red'>상세페이지</제목>
         </박스>
-        
+
     <input onChange= {(e)=>{inputData변경(e.target.value)}}>
     </input>
         {
@@ -50,7 +51,12 @@ let history = useHistory();
             <h4 className="pt-5">{props.shoes작명[id].title}</h4>
             <p>{props.shoes작명[id].content}</p>
             <p>{props.shoes작명[id].price}</p>
-            <button className="btn btn-danger">주문하기</button> 
+
+            <Info 재고작명 ={props.재고작명 }></Info>
+
+            <button className="btn btn-danger" onClick ={()=>{
+                props.재고변경작명([9,11,12]);
+            }}>주문하기</button> 
             <button className="btn btn-danger" onClick={()=>{
              history.goBack();
             }}>뒤로가기</button> 
@@ -60,4 +66,11 @@ let history = useHistory();
   </div> 
     )
   }
+
+  function Info(props){
+      return(
+          <p> 재고: {props.재고작명[0]}</p>
+      )
+  }
+
   export default Detail;

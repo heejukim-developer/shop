@@ -1,15 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
 import {Navbar, Container,Nav,NavDropdown,Button } from 'react-bootstrap';
-import { useState } from 'react';
+import React, { useEffect, useState ,useContext} from 'react';
 import Data from './data';
 import Detail from './Detail.js';
+import axios from 'axios';
 
 import {Link, Route, Switch} from 'react-router-dom';
+let 재고context = React.createContext();
 
 function App() {
 
 let [데이터,데이터변경]= useState(Data)
+let [Loding, Lodingchange]= useState(true);
+let [재고,재고변경]= useState([10,11,12]);
+
+useEffect(()=>{
+  Lodingchange(true)});
 
   return (
     <div className="App">
@@ -44,6 +51,8 @@ let [데이터,데이터변경]= useState(Data)
   </div>
 
   <div className="container">
+
+    <재고context.Provider value={재고}>
   <div className="row">
   {
     데이터.map((a,i)=>{
@@ -51,13 +60,38 @@ let [데이터,데이터변경]= useState(Data)
     })
     }
   </div>
+   </재고context.Provider>
+  <button className = "btn btn-primary" onClick = {()=>{
+  Lodingchange(true)
+  //  { 
+  //    Loding === true
+  //    ? (<div className="로딩">
+  //    <h2>로딩중입니다</h2>
+  //   </div>)
+  //    : null
+  //  }
+    axios.post('서버url',{id:'heeju',pw:'12345'})
+    axios.get('https://codingapple1.github.io/shop/data2.json')
+    .then((result)=>{
+      Lodingchange(false)
+
+      console.log(result.data);
+      데이터변경([...데이터, ...result.data ]);
+    })
+  
+    .catch(()=>{ 
+      Lodingchange(false)
+
+
+      console.log('서버를 불러오는데 실패했어요')})
+  }}>더보기</button>
   </div>
 
 </Route>
 
 <Switch>
 <Route path ="/detail/:id">
-  <Detail shoes작명 ={데이터}/>
+  <Detail shoes작명 = {데이터} 재고작명 ={재고} 재고변경작명 ={재고변경}/>
 </Route>
 
 <Route path ="/:id">
@@ -89,18 +123,28 @@ let [데이터,데이터변경]= useState(Data)
   );
 }
 
-
-
-
 function Card(props) {
+  let 재고 = useContext(재고context)
   return(
    <div className= "col-md-4">
    <img src= {'https://github.com/heejukim-developer/shop/blob/master/src/'+ (props.i +1) + '.jpg?raw=true'} width="100%" />
     <h5> {props.shoes.title} </h5>
     <p> {props.shoes.price} {props.shoes.content}</p>
+  
+   
+    <Test></Test>
+    
     </div>
+   
   
    )
   }
-  
+  function Test(){
+    let 재고 = useContext(재고context);
+    return(
+      <p>재고:{재고}</p>
+    )
+  }
+
+
   export default App;
