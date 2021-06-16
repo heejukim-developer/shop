@@ -7,7 +7,7 @@ import Detail from './Detail.js';
 import axios from 'axios';
 
 import {Link, Route, Switch} from 'react-router-dom';
-let 재고context = React.createContext();
+export let 재고context = React.createContext();
 
 function App() {
 
@@ -91,7 +91,9 @@ useEffect(()=>{
 
 <Switch>
 <Route path ="/detail/:id">
+<재고context.Provider value={재고}>
   <Detail shoes작명 = {데이터} 재고작명 ={재고} 재고변경작명 ={재고변경}/>
+  </재고context.Provider>
 </Route>
 
 <Route path ="/:id">
@@ -131,7 +133,6 @@ function Card(props) {
     <h5> {props.shoes.title} </h5>
     <p> {props.shoes.price} {props.shoes.content}</p>
   
-   
     <Test></Test>
     
     </div>
