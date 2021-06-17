@@ -4,6 +4,7 @@ import { useHistory , useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
 import {재고context} from './App.js';
+import { Button } from 'react-bootstrap';
 
 let 박스 = styled.div`
     padding: 20px;
@@ -67,6 +68,15 @@ let history = useHistory();
   </div> 
     )
   }
+
+  <Button></Button>
+  <Button></Button>
+  <Button></Button>
+
+ <div></div>
+ <div></div>
+ <div></div>
+
 
   function Info(props){
       return(
