@@ -91,7 +91,7 @@ useEffect(()=>{
 
 <Switch>
 <Route path ="/detail/:id">
-<재고context.Provider value={재고}>
+ <재고context.Provider value={재고}>
   <Detail shoes작명 = {데이터} 재고작명 ={재고} 재고변경작명 ={재고변경}/>
   </재고context.Provider>
 </Route>

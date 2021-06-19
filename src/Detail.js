@@ -3,8 +3,8 @@ import React,{ useEffect, useState } from 'react';
 import { useHistory , useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
-import {재고context} from './App.js';
-import { Button } from 'react-bootstrap';
+// import {재고context} from './App.js';
+import { Nav } from 'react-bootstrap';
 
 let 박스 = styled.div`
     padding: 20px;
@@ -15,7 +15,7 @@ let 제목 = styled.h4`
 `;
 
 function Detail(props){
-    let 재고 = useContext(재고context);
+    // let 재고 = useContext(재고context);
 useEffect(()=>{
    let 타이머 = setTimeout(() => {alert변경(false) }, 2000);
    console.log('안녕');
@@ -26,6 +26,7 @@ let [alert, alert변경]= useState(true);
 let [inputData , inputData변경] = useState('');
 let { id } = useParams();
 let history = useHistory();
+let [누른탭,누른탭변경]= useState(0);
 
     return(
       <div className="container">
@@ -65,19 +66,33 @@ let history = useHistory();
 
           </div>
         </div>
+
+  <Nav className = "mt-5" variant="tabs" defaultActiveKey="link-0">
+    <Nav.Item>
+        <Nav.Link eventKey="link-0" onClick = {()=>{누른탭변경(0)}}>Active</Nav.Link>
+    </Nav.Item>
+    <Nav.Item>
+        <Nav.Link eventKey="link-1" onClick = {()=>{누른탭변경(1)}}>Option 2</Nav.Link>
+    </Nav.Item>
+    </Nav>
+
+
+<TabContent 누른탭작명 = {누른탭}></TabContent>
   </div> 
     )
   }
 
-  <Button></Button>
-  <Button></Button>
-  <Button></Button>
+  function TabContent(props){
+    if(props.누른탭작명 === 0){
+        return <div>0번째 내용입니다</div>
+    }else if(props.누른탭작명 === 1){
+        return<div>1번째 내용입니다</div>
+    }else if(props.누른탭작명 === 2){
+        return<div>2번째 내용입니다</div>
+    }
 
- <div></div>
- <div></div>
- <div></div>
-
-
+  }
+  
   function Info(props){
       return(
           <p> 재고: {props.재고작명[0]}</p>
