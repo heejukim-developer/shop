@@ -7,15 +7,14 @@ import { BrowserRouter } from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
-let store = createStore(()=>{
-  return [{id:0,name:'멋진물건',quan:2}]
-});
+let store = createStore(()=>{return [{id:0,name:'귀염뽀짝 하네스',quan:2,color:'red'}] });
 
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Provider>
+
+    <Provider store= {store}>
     <App />
     </Provider>
     

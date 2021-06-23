@@ -1,25 +1,34 @@
-import React from 'react';
-import {Table} from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Table } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-function Cart(){
-    return(
+
+function Cart(props){
+
+    
+return(
 <div>
 <Table striped bordered hover>
-  <thead>
     <tr>
       <th>#</th>
       <th>상품명</th>
       <th>수량</th>
-      <th>변경</th>
+      <th>색상</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
+    
+
+    {props.state.map((a,i)=>{
+        return(
+        <tr key ={i}>
+            <td>{a.id}</td>
+            <td>{a.name}</td>
+            <td>{a.quan}</td>
+            <td>{a.color}</td>
+            </tr>)
+        })}
+     
+     
+   
     <tr>
       <td>2</td>
       <td>Jacob</td>
@@ -27,11 +36,16 @@ function Cart(){
       <td>@fat</td>
     </tr>
     
-  </tbody>
 </Table>
 </div>
 
     )
 }
 
-export default Cart;
+function state를props화 (state){
+    return{
+       state: state
+    }
+}
+export default connect(state를props화)(Cart)
+// export default Cart;
