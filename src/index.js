@@ -10,7 +10,7 @@ import {createStore,combineReducers} from 'redux';
 let alert초기값 = true;
 function reducer2(state= alert초기값, 액션){
  if(액션.type === 'alert닫기'){
-  return false;
+  return false
 }else{
     return state 
   }
