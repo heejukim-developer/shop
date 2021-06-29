@@ -26,8 +26,8 @@ return(
             <td>{a.name}</td>
             <td>{a.quan}</td>
             <td>{a.color}</td>
-            <td><button onClick ={()=>{props.dispatch({type :'수량증가'})}}>+</button>
-                <button onClick ={()=>{props.dispatch({type :'수량감소'})}}>-</button>
+            <td><button onClick ={()=>{props.dispatch({type :'수량증가',장바구니데이터 : a.id})}}>+</button>
+                <button onClick ={()=>{props.dispatch({type :'수량감소',장바구니데이터 : a.id})}}>-</button>
             </td>
 
             </tr>)

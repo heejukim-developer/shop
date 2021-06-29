@@ -7,7 +7,7 @@ import Detail from './Detail.js';
 import axios from 'axios';
 import Cart from './Cart';
 
-import {Link, Route, Switch} from 'react-router-dom';
+import {Link, Route, Switch, useHistory} from 'react-router-dom';
 export let 재고context = React.createContext();
 
 function App() {
@@ -75,7 +75,6 @@ useEffect(()=>{
     axios.get('https://codingapple1.github.io/shop/data2.json')
     .then((result)=>{
       Lodingchange(false)
-
       console.log(result.data);
       데이터변경([...데이터, ...result.data ]);
     })
@@ -96,12 +95,12 @@ useEffect(()=>{
   </재고context.Provider>
 </Route>
 
-<Route>
+<Route path ="/cart">
   <Cart></Cart>
 </Route>
 
 <Route path ="/:id">
-  <div> 안녕하슈 </div>
+  <div> 페이지가 없습니다 </div>
 </Route>
 
 </Switch>
@@ -131,8 +130,9 @@ useEffect(()=>{
 
 function Card(props) {
   let 재고 = useContext(재고context)
+  let history =useHistory();
   return(
-   <div className= "col-md-4">
+   <div className= "col-md-4" onClick={()=>{history.push('/detail/'+props.shoes.id)}}>
    <img src= {'https://github.com/heejukim-developer/shop/blob/master/src/'+ (props.i +1) + '.jpg?raw=true'} width="100%" />
     <h5> {props.shoes.title} </h5>
     <p> {props.shoes.price} {props.shoes.content}</p>

@@ -28,8 +28,10 @@ let [alert, alert변경]= useState(true);
 let [inputData , inputData변경] = useState('');
 let { id } = useParams();
 let history = useHistory();
+let 찾은상품 = props.shoes작명.find(x=>x.id==id);
 let [누른탭,누른탭변경]= useState(0);
 let [스위치,스위치변경]= useState(false);
+
 
 
     return(
@@ -55,19 +57,19 @@ let [스위치,스위치변경]= useState(false);
             <img src="https://github.com/heejukim-developer/shop/blob/master/src/1.jpg?raw=true" width="100%" />
           </div>
           <div className="col-md-6 mt-4">
-            <h4 className="pt-5">{props.shoes작명[id].title}</h4>
-            <p>{props.shoes작명[id].content}</p>
-            <p>{props.shoes작명[id].price}</p>
+            <h4 className="pt-5">{찾은상품.title}</h4>
+            <p>{찾은상품.content}</p>
+            <p>{찾은상품.price}</p>
 
             <Info 재고작명 ={props.재고작명 }></Info>
 
             <button className="btn btn-danger" onClick ={()=>{
                 props.재고변경작명([9,11,12]);
-                props.dispatch({type:'항목추가',payload:{id:2,name:'새로운상품',quan:1}
-            });
+                props.dispatch({type:'항목추가',장바구니데이터:{id:찾은상품.id, name:찾은상품.title,
+                quan:1}});
             history.push('/cart');
             }}>주문하기</button> 
-            
+
             <button className="btn btn-danger" onClick={()=>{
              history.goBack();
             }}>뒤로가기</button> 
