@@ -1,14 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
 import {Navbar, Container,Nav,NavDropdown,Button } from 'react-bootstrap';
-import React, { useEffect, useState ,useContext} from 'react';
+import React, { useEffect, useState ,useContext,lazy,Suspense} from 'react';
 import Data from './data';
-import Detail from './Detail.js';
+// import Detail from './Detail.js';
 import axios from 'axios';
 import Cart from './Cart';
-
 import {Link, Route, Switch, useHistory} from 'react-router-dom';
+let Detail = lazy(()=> import('./Detail'));
+
+
 export let 재고context = React.createContext();
+
 
 function App() {
 
@@ -91,7 +94,9 @@ useEffect(()=>{
 <Switch>
 <Route path ="/detail/:id">
  <재고context.Provider value={재고}>
+   <Suspense fallback = {<div>로딩중입니다 ! 잠시만 기다려주세요 </div>}>
   <Detail shoes작명 = {데이터} 재고작명 ={재고} 재고변경작명 ={재고변경}/>
+  </Suspense>
   </재고context.Provider>
 </Route>
 
